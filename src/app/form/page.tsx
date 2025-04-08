@@ -2,8 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { API } from 'aws-amplify/api';
-import { graphqlOperation } from 'aws-amplify/utils';
+import { API, graphqlOperation } from 'aws-amplify';
 import { createFormEntry } from '@/graphql/mutations';
 
 export default function FormPage() {

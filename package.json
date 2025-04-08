@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@aws-amplify/backend": "^1.14.3",
-    "aws-amplify": "^6.14.1",
+    "aws-amplify": "^5.3.27",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
