@@ -10,6 +10,14 @@
       "StackName": "amplify-assignment2504-dev-79e6b",
       "StackId": "arn:aws:cloudformation:ap-southeast-2:314146308178:stack/amplify-assignment2504-dev-79e6b/f798be00-145a-11f0-9d22-02aeed32c179",
       "AmplifyAppId": "d1k4hynktwdge7"
+    },
+    "categories": {
+      "auth": {
+        "assignment25046b2b1368": {}
+      },
+      "api": {
+        "formapi": {}
+      }
     }
   }
 }
