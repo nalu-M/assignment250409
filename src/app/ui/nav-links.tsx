@@ -7,8 +7,9 @@ const navigations = [
     { id: 1, name: "ホーム", href: "/" },
     { id: 2, name: "リスト", href: "/list" },
     { id: 3, name: "マイページ", href: "/mypage" },
-    { id: 4, name: "ログイン", href: "/login" },
-    { id: 5, name: "登録", href: "/signup" },
+    { id: 4, name: "送信", href: "/form" },
+    { id: 5, name: "ログイン", href: "/login" },
+    { id: 6, name: "登録", href: "/signup" },
 ];
 
 export default function NavLinks() {
