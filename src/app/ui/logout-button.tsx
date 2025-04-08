@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { getCurrentUser, signOut } from "aws-amplify/auth";
+import { Auth } from "aws-amplify";
 import { useRouter } from "next/navigation";
 
 const LogOutButton = () => {
@@ -11,7 +11,7 @@ const LogOutButton = () => {
     useEffect(() => {
         const checkUser = async () => {
             try {
-                await getCurrentUser();
+                await Auth.currentAuthenticatedUser();
                 setLogin(true);
             } catch {
                 setLogin(false);
@@ -27,7 +27,7 @@ const LogOutButton = () => {
     
     const handleLogOut = async () => {
         try {
-            await signOut();
+            await Auth.signOut();
             setLogin(false);
             router.push("/login");
         } catch (error) {

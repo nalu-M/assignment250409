@@ -2,7 +2,7 @@
 
 import "@/app/amp/config";
 import { useState } from "react";
-import { signUp, type SignUpInput, confirmSignUp, type ConfirmSignUpInput } from "aws-amplify/auth";
+import { Auth } from "aws-amplify";
 import { useRouter } from "next/navigation";
 
 const SignUp = () => {
@@ -26,11 +26,10 @@ const SignUp = () => {
 
     try {
       setLoading(true);
-      const signUpInput: SignUpInput = {
+      await Auth.signUp({
         username: email,
         password,
-      };
-      await signUp(signUpInput);
+      });
 
       setStep("confirm");
     } catch (err: unknown) {
@@ -50,11 +49,10 @@ const SignUp = () => {
 
     try {
       setLoading(true);
-      const confirmSignUpInput: ConfirmSignUpInput = {
-        username: email,
-        confirmationCode: code,
-      };
-      await confirmSignUp(confirmSignUpInput);
+      await Auth.confirmSignUp(
+        email,
+        code,
+      );
 
       router.push("/login");
     } catch (err: unknown) {

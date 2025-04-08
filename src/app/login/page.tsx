@@ -2,7 +2,7 @@
 
 import "@/app/amp/config";
 import { useState } from "react";
-import { signIn, SignInInput } from "aws-amplify/auth";
+import { Auth } from "aws-amplify";
 import { useRouter } from "next/navigation";
 
 export default function LogIn() {
@@ -17,11 +17,10 @@ export default function LogIn() {
         setLoading(true);
         setError("");
         try {
-            const signInInput: SignInInput = {
+            await Auth.signIn({
                 username: email,
-                password: password,
-            };
-            await signIn(signInInput);
+                password,
+            });
             router.push("/mypage");
         } catch (err: unknown) {
             if (err instanceof Error) {
