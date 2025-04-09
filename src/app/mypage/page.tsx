@@ -23,10 +23,9 @@ const MyPage = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const user = await Auth.currentAuthenticatedUser();
-                const attributes = user.attributes;
-                setUser(user);
-                setAttributes(attributes);
+                const cognitoUser = await Auth.currentAuthenticatedUser() as CognitoUser & {attributes: UserAttributes  }
+                setUser(cognitoUser);
+                setAttributes(cognitoUser.attributes);
             } catch (err: unknown) {
                 if (err instanceof Error) {
                     console.error(err.message);

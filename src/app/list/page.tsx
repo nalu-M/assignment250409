@@ -3,7 +3,9 @@
 
 import { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
+import { GraphQLResult } from '@aws-amplify/api-graphql';
 import { listFormEntries } from '@/graphql/queries';
+import { ListFormEntriesQuery } from '@/API';
 
 type FormEntry = {
     id: string;
@@ -19,10 +21,18 @@ export default function FormListPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result: any = await API.graphql(graphqlOperation(listFormEntries));
-        setEntries(result.data.listFormEntrys.items);
+        const response = await API.graphql(
+          graphqlOperation(listFormEntries)
+        );
+
+        const result = response as GraphQLResult<ListFormEntriesQuery>;
+        const items = result.data?.listFormEntries?.items;
+
+        if (items) {
+          setEntries(items as FormEntry[]);
+        }
       } catch (error) {
-        console.error('データ取得失敗:', error);
+          console.error('データ取得失敗:', error);
       }
     };
 
