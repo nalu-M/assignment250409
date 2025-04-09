@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { createFormEntry } from '@/graphql/mutations';
+import { Credentials } from 'aws-cdk-lib/aws-rds';
 
 export default function FormPage() {
   const router = useRouter();
@@ -29,6 +30,8 @@ export default function FormPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const credentials = await Auth.currentCredentials();
+
       await API.graphql(graphqlOperation(createFormEntry, { input: formData }));
       alert('送信完了！');
     } catch (err) {
