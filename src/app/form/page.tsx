@@ -32,7 +32,11 @@ export default function FormPage() {
       const credentials = await Auth.currentCredentials();
       console.log(credentials);
 
-      await API.graphql(graphqlOperation(createFormEntry, { input: formData }));
+      await API.graphql({
+        query: createFormEntry,
+        variables: { input: formData },
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+      });
       alert('送信完了！');
     } catch (err) {
       console.error('送信失敗:', err);
