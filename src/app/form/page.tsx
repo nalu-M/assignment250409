@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { createFormEntry } from '@/graphql/mutations';
-import { Credentials } from 'aws-cdk-lib/aws-rds';
 
 export default function FormPage() {
   const router = useRouter();
@@ -20,7 +19,7 @@ export default function FormPage() {
       .catch(() => {
         router.push('/login'); // ログインしていなければリダイレクト
       });
-  }, []);
+  }, [router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -31,6 +30,7 @@ export default function FormPage() {
     e.preventDefault();
     try {
       const credentials = await Auth.currentCredentials();
+      console.log(credentials);
 
       await API.graphql(graphqlOperation(createFormEntry, { input: formData }));
       alert('送信完了！');
