@@ -1,11 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import { API, graphqlOperation } from 'aws-amplify';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { createFormEntry } from '@/graphql/mutations';
 
 export default function FormPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
+  // ログイン確認
+  useEffect(() => {
+    Auth.currentAuthenticatedUser()
+      .then(() => {
+        setIsAuthChecked(true);
+      })
+      .catch(() => {
+        router.push('/login'); // ログインしていなければリダイレクト
+      });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,6 +35,10 @@ export default function FormPage() {
       console.error('送信失敗:', err);
     }
   };
+
+  if (!isAuthChecked) {
+    return <p className="text-center mt-20">認証を確認中...</p>;
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
