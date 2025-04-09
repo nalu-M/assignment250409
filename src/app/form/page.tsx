@@ -1,4 +1,3 @@
-// app/form/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -24,11 +23,36 @@ export default function FormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md mx-auto p-4">
-      <input name="name" value={formData.name} onChange={handleChange} placeholder="名前" required />
-      <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="メール" required />
-      <textarea name="message" value={formData.message} onChange={handleChange} placeholder="メッセージ" />
-      <button type="submit" className="bg-blue-500 text-white p-2">送信</button>
-    </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md w-full p-4 bg-white shadow-md rounded">
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="名前"
+          required
+          className="border p-2 rounded"
+        />
+        <input
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="メール"
+          required
+          className="border p-2 rounded"
+        />
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="メッセージ"
+          className="border p-2 rounded"
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+          送信
+        </button>
+      </form>
+    </div>
   );
 }
