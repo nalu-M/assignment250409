@@ -1,6 +1,10 @@
 type FormEntry
   @model
-  @auth(rules: [{ allow: public }]) {
+  @auth(
+    rules: [
+      { allow: private, provider: userPools } # 認証済ユーザー（Cognito）を許可
+    ]
+  ) {
   id: ID!
   name: String!
   email: String!
