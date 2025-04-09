@@ -29,8 +29,6 @@ export default function FormPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const credentials = await Auth.currentCredentials();
-      console.log(credentials);
 
       await API.graphql({
         query: createFormEntry,
