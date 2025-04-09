@@ -10,7 +10,7 @@ type UserAttributes = {
     sub: string;
     email: string;
     email_verified?: boolean;
-    [key: string]: any; // もし他にもカスタム属性があるならこの行を追加
+    [key: string]: unknown; // もし他にもカスタム属性があるならこの行を追加
   };
   
 
