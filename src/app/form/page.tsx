@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import { createFormEntry } from '@/graphql/mutations';
 
 export default function FormPage() {
