@@ -6,9 +6,17 @@ import { Auth } from "aws-amplify";
 import type { CognitoUser } from "amazon-cognito-identity-js";
 import LogOutButton from "../ui/logout-button";
 
+type UserAttributes = {
+    sub: string;
+    email: string;
+    email_verified?: boolean;
+    [key: string]: any; // もし他にもカスタム属性があるならこの行を追加
+  };
+  
+
 const MyPage = () => {
     const [user, setUser] = useState<CognitoUser | null>(null);
-    const [attributes, setAttributes] = useState<any>(null);
+    const [attributes, setAttributes] = useState<UserAttributes | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 

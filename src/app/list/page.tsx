@@ -5,8 +5,16 @@ import { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listFormEntries } from '@/graphql/queries';
 
+type FormEntry = {
+    id: string;
+    name: string;
+    email: string;
+    message: string;
+  };
+  
+
 export default function FormListPage() {
-  const [entries, setEntries] = useState<any[]>([]);
+  const [entries, setEntries] = useState<FormEntry[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
