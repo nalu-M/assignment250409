@@ -1,6 +1,5 @@
 'use client';
 
-import "@/app/amp/config";
 import { useState, useEffect } from "react";
 import { Auth } from "aws-amplify";
 import type { CognitoUser } from "amazon-cognito-identity-js";

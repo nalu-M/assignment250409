@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 import Nav from './ui/nav';
 import React from 'react';
+import './amplify-client'; // ← ✅ クライアントサイドで初期化されるように import だけする
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

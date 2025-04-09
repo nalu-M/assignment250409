@@ -1,6 +1,5 @@
 'use client';
 
-import "@/app/amp/config";
 import { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/navigation";
